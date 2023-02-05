@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ForgetMeNot.View.Login"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:iOsSpecific="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    Title="Login"
+    iOsSpecific:Page.UseSafeArea="True"
+    Shell.NavBarIsVisible="False"
+    Shell.PresentationMode="ModalAnimated">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Prompt" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="End" />
+            </Style>
+            <Style x:Key="LoginButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="LightGray" />
+                <Setter Property="Margin" Value="0,20,0,0" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="WidthRequest" Value="125" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <VerticalStackLayout>
+        <Grid
+            ColumnDefinitions="*,*,*"
+            RowDefinitions="Auto,Auto,Auto,Auto"
+            RowSpacing="10">
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Style="{StaticResource Prompt}"
+                Text="User name" />
+            <Entry
+                Grid.Row="0"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Placeholder="User name"
+                Text="{Binding LoginName}"
+                WidthRequest="150" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="0"
+                HorizontalOptions="End"
+                Style="{StaticResource Prompt}"
+                Text="Password" />
+            <Entry
+                Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                IsPassword="True"
+                Placeholder="Password"
+                Text="{Binding Password}"
+                WidthRequest="150" />
+            <Button
+                Grid.Row="2"
+                Grid.Column="0"
+                Command="{Binding DoLoginCommand}"
+                Style="{StaticResource LoginButton}"
+                Text="Submit" />
+            <Button
+                Grid.Row="2"
+                Grid.Column="1"
+                Command="{Binding DoCreateAccountCommand}"
+                Style="{StaticResource LoginButton}"
+                Text="Create Account" />
+            <Button
+                Grid.Row="2"
+                Grid.Column="2"
+                BackgroundColor="LightGray"
+                Command="{Binding ForgotPasswordCommand}"
+                Style="{StaticResource LoginButton}"
+                Text="Forgot Password" />
+        </Grid>
+        <ActivityIndicator
+            x:Name="activityIndicator"
+            HeightRequest="50"
+            IsRunning="{Binding ShowActivityIndicator}"
+            Color="Blue" />
+
+    </VerticalStackLayout>
+</ContentPage>
